@@ -1,0 +1,23 @@
+name: Shell Detection
+
+on: workflow_dispatch
+
+jobs:
+  detect-shell:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Detect shell
+        run: |
+          if [ "${{ matrix.os }}" == "windows-latest" ]; then
+            echo "Running on ${{ matrix.os }} with $SHELL"
+          else
+            echo "Running on ${{ matrix.os }} with $SHELL"
+          fi
+        shell: bash
